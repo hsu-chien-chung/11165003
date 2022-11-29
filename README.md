@@ -1,3 +1,3 @@
 # 11165003
-# Rare Events Analysis for High‐Frequency Equity Data
+# 高頻股票的罕見事件分析－以APPLE股票為例
 =============
