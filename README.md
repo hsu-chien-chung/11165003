@@ -7,6 +7,10 @@
 
 ### In this work we present a methodology to detect rare events which are defined as large price movements relative to the volume traded. We analyze the behavior of equity after the detection of these rare events. We provide methods to calibrate trading rules based on the detection of these events and illustrate for a particular trading rule. We apply the methodology to tick data for thousands of equities over a period of five days. In order to draw comprehensive conclusions, we group the equities into classes and calculate probabilities of price recovery after these rare events for each class. The methodology that we have developed is based on non-parametric statistics and makes no assumption about the distribution of the random variables in the study. ###
 
+## Methodology ##
+
+### In this analysis we use tick-by-tick data of 5,369 equities traded on NYSE,NASDAQ, and AMEX over five days. We need the most detailed possible dataset; however, since our discovery is limited to past trades we do not require the use of a more detailed level-2 order data. We perform model-free statistical analysis on this multivariate dataset.<br/>For any given equity in the dataset, an observation represents a trade.Each trade records the price P of the transaction, the volume V of the shares traded and the time t at which the transaction takes place. In this study we are primarily interested in large price movement with small volume, thus for any two observations in the dataset we construct a two-dimensional random vector (ΔP, ΔV). Here ΔP is the change in price, ΔV is the change in volume.<br/>The reason for considering any pair of trades and not only consecutive trades is that in general the price movement occurs over several consecutive trades. The main objective of our study is the conditional distribution:<br/><br/>![image](https://user-images.githubusercontent.com/118785456/204483065-b8ecb495-b40c-4b0c-a152-f9436dec8ce1.png)<br/><br/>That is, the maximum price movement given the cumulative volume between two trades is less than a value V0, which is specific for each equity.The study of this distribution will answer the specific questions asked at the beginning of this paper. ###
+
 ## 將兩函數程式化：<br/>![image](https://user-images.githubusercontent.com/118785456/204456081-c6fa7456-35e8-4941-8128-7b798b084f77.png)<br/>![image](https://user-images.githubusercontent.com/118785456/204456185-7e215b9c-8f8f-40c6-82ff-8edd4a07e9f8.png) ##
 
 # 高頻股票的罕見事件分析－以APPLE股票為例 #
@@ -48,7 +52,7 @@ k = []
 df = []
 k_max = []
 
-V0=hist["Volume"].mean()*(len(hist)/4) #用一季的平均交易量來當預設
+V0=hist["Volume"].mean()*(len(hist)/4) #用平均交易量的一季累計來當預設
 print(V0) #V0的預設值
 data = hist[["Close","Volume","Date"]]
 v=0
