@@ -93,3 +93,26 @@ k_max = np.asarray(k_max)
 print(pd.DataFrame(k_max))  #delta_Pn = 0～251的所有最大價差
 ```
 ![image](https://user-images.githubusercontent.com/118785456/204461203-0831eab0-3e3a-49ee-9fcc-37c7caf4076e.png)
+## 最大價差出售、購買日期 ##
+```python
+a = df[m,1].astype(int)
+b = df[m,2].astype(int)
+print(data.iloc[a,2]) #最大價差出售日期
+print(data.iloc[b,2]) #最大價差購買日期
+```
+![image](https://user-images.githubusercontent.com/118785456/204463466-686fc721-27e2-401b-b29b-267a79306ae7.png)
+## 計算 ##
+![image](https://user-images.githubusercontent.com/118785456/204456185-7e215b9c-8f8f-40c6-82ff-8edd4a07e9f8.png)
+```python
+def Y(Data):
+  df_dp = pd.DataFrame(Data)
+  m = float(df_dp.mean())
+  se = float(df_dp.std() / len(hist)**0.5)
+
+  return (m-1.96*se)
+
+Y(Data = df[:,3].round(2))  #Qa(x)
+```
+## 交易量的下臨界值 ##
+![image](https://user-images.githubusercontent.com/118785456/204464379-4c25924b-fd57-4597-8953-704299f406b5.png)
+
