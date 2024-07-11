@@ -4,13 +4,14 @@
 
 ## Abstract ##
 
-### In this work we present a methodology to detect rare events which are defined as large price movements relative to the volume traded. We analyze the behavior of equity after the detection of these rare events. We provide methods to calibrate trading rules based on the detection of these events and illustrate for a particular trading rule. We apply the methodology to tick data for thousands of equities over a period of five days. In order to draw comprehensive conclusions, we group the equities into classes and calculate probabilities of price recovery after these rare events for each class. The methodology that we have developed is based on non-parametric statistics and makes no assumption about the distribution of the random variables in the study. ###
+In this work we present a methodology to detect rare events which are defined as large price movements relative to the volume traded. We analyze the behavior of equity after the detection of these rare events. We provide methods to calibrate trading rules based on the detection of these events and illustrate for a particular trading rule. We apply the methodology to tick data for thousands of equities over a period of five days. In order to draw comprehensive conclusions, we group the equities into classes and calculate probabilities of price recovery after these rare events for each class. The methodology that we have developed is based on non-parametric statistics and makes no assumption about the distribution of the random variables in the study.
 
 ## Methodology ##
 
-### In this analysis we use tick-by-tick data of 5,369 equities traded on NYSE,NASDAQ, and AMEX over five days. We need the most detailed possible dataset; however, since our discovery is limited to past trades we do not require the use of a more detailed level-2 order data. We perform model-free statistical analysis on this multivariate dataset.<br/>For any given equity in the dataset, an observation represents a trade.Each trade records the price P of the transaction, the volume V of the shares traded and the time t at which the transaction takes place. In this study we are primarily interested in large price movement with small volume, thus for any two observations in the dataset we construct a two-dimensional random vector (ΔP, ΔV). Here ΔP is the change in price, ΔV is the change in volume.<br/>The reason for considering any pair of trades and not only consecutive trades is that in general the price movement occurs over several consecutive trades. The main objective of our study is the conditional distribution:<br/><br/>$`$Prob ( \max \Delta P  | \Delta V&lt;V_0 )$`$<br/>That is, the maximum price movement given the cumulative volume between two trades is less than a value V0, which is specific for each equity.The study of this distribution will answer the specific questions asked at the beginning of this paper. ###
+In this analysis we use tick-by-tick data of 5,369 equities traded on NYSE,NASDAQ, and AMEX over five days. We need the most detailed possible dataset; however, since our discovery is limited to past trades we do not require the use of a more detailed level-2 order data. We perform model-free statistical analysis on this multivariate dataset.<br/>For any given equity in the dataset, an observation represents a trade.Each trade records the price P of the transaction, the volume V of the shares traded and the time t at which the transaction takes place. In this study we are primarily interested in large price movement with small volume, thus for any two observations in the dataset we construct a two-dimensional random vector (ΔP, ΔV). Here ΔP is the change in price, ΔV is the change in volume.<br/>The reason for considering any pair of trades and not only consecutive trades is that in general the price movement occurs over several consecutive trades. The main objective of our study is the conditional distribution:<br/><br/>$`$Prob ( \max \Delta P  | \Delta V&lt;V_0 )$`$<br/>That is, the maximum price movement given the cumulative volume between two trades is less than a value V0, which is specific for each equity.The study of this distribution will answer the specific questions asked at the beginning of this paper.
 
-## 將兩函數程式化：$`$\Delta p_n = max\{S_n-S_k, S_n-S_{k+1}, ..., S_n-S_{n-1}\}$`$$`$Q^{+}_{\alpha}(x)={x:prob(\Delta p&lt;x)&lt;\alpha\quad or\quad prob(\Delta p&lt;x)&lt;1-\alpha}$`$ ##
+## 將兩函數程式化：
+#### $`$\Delta p_n = max\{S_n-S_k, S_n-S_{k+1}, ..., S_n-S_{n-1}\}$`$$`$Q^{+}_{\alpha}(x)={x:prob(\Delta p&lt;x)&lt;\alpha\quad or\quad prob(\Delta p&lt;x)&lt;1-\alpha}$`$
 
 ### 高頻股票的罕見事件分析－以APPLE股票為例
 
@@ -88,11 +89,11 @@ print(df[m,1:].astype(int)) #最大價差的交易時期與累計交易量
 ```
 #### $V_0$的預設值:5727424100.0
 
-#### $delta_P$的值、交易期間與累計交易量
+#### $\Delta P$的值、交易期間與累計交易量
 ![image](https://user-images.githubusercontent.com/118785456/204460191-2cede98e-e74b-4277-aa34-9dca6b30e550.png)
 #### 最大交易價差、交易期間與累計交易量
 ![image](https://user-images.githubusercontent.com/118785456/204460552-b04836ee-21ac-400a-8aaf-cbd4103aba6c.png)
-#### \delta P_n = max\{S_n-S_k, S_n-S_{k+1}, ..., S_n-S_{n-1}\}
+#### $\Delta P_n = max\{S_n-S_k, S_n-S_{k+1}, ..., S_n-S_{n-1}\}$
 ```python
 k_max = np.asarray(k_max) 
 print(pd.DataFrame(k_max))  #delta_Pn = 0～251的所有最大價差
