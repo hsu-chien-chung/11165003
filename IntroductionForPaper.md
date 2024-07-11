@@ -10,7 +10,7 @@
 
 ### In this analysis we use tick-by-tick data of 5,369 equities traded on NYSE,NASDAQ, and AMEX over five days. We need the most detailed possible dataset; however, since our discovery is limited to past trades we do not require the use of a more detailed level-2 order data. We perform model-free statistical analysis on this multivariate dataset.<br/>For any given equity in the dataset, an observation represents a trade.Each trade records the price P of the transaction, the volume V of the shares traded and the time t at which the transaction takes place. In this study we are primarily interested in large price movement with small volume, thus for any two observations in the dataset we construct a two-dimensional random vector (ΔP, ΔV). Here ΔP is the change in price, ΔV is the change in volume.<br/>The reason for considering any pair of trades and not only consecutive trades is that in general the price movement occurs over several consecutive trades. The main objective of our study is the conditional distribution:<br/><br/>$`$Prob ( \max \Delta P  | \Delta V&lt;V_0 )$`$<br/>That is, the maximum price movement given the cumulative volume between two trades is less than a value V0, which is specific for each equity.The study of this distribution will answer the specific questions asked at the beginning of this paper. ###
 
-## 將兩函數程式化：<br/>![image](https://user-images.githubusercontent.com/118785456/204456081-c6fa7456-35e8-4941-8128-7b798b084f77.png)<br/>![image](https://user-images.githubusercontent.com/118785456/204456185-7e215b9c-8f8f-40c6-82ff-8edd4a07e9f8.png) ##
+## 將兩函數程式化：<br/>$`$\Delta p_n = max\{S_n-S_k, S_n-S_{k+1}, ..., S_n-S_{n-1}\}$`$$`$Q^{+}_{\alpha}(x)={x:prob(\Delta p&lt;x)&lt;\alpha\quad or\quad prob(\Delta p&lt;x)&lt;1-\alpha}$`$ ##
 
 # 高頻股票的罕見事件分析－以APPLE股票為例 #
 
@@ -42,7 +42,7 @@ plt.plot(hist[["Volume"]].iloc[:, 0])
 ```
 ![image](https://user-images.githubusercontent.com/118785456/204455451-86bbadc4-4a5b-4e16-b96e-0afc016efbc0.png)
 ## 計算 ##
-![image](https://user-images.githubusercontent.com/118785456/204457353-6b96adce-543c-4aa6-b8d4-5ad14b898ca0.png)<br/>![image](https://user-images.githubusercontent.com/118785456/204458298-ba3895b0-f5e6-4ecb-a1d9-f5d81ecac0e5.png)<br/>![image](https://user-images.githubusercontent.com/118785456/204462017-55df0386-2486-434c-aee9-314bb903645b.png)
+### $`$(S_n-S_j|v_k + v_{k+1} +...+ v_n &lt; V_0)\quad for \quad k \leq j \leq n$`$<br/>$`$\Delta P | V < V_0$`$<br/>$`$\Delta p_n = max\{S_n-S_k, S_n-S_{k+1}, ..., S_n-S_{n-1}\}$`$
 ```python
 import pandas as pd
 import numpy as np
