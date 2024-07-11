@@ -1,6 +1,8 @@
 # Rare Events Analysis for High-Frequency Equity Data #
 
-## 作者：Dragos Bozdog, Ionut¸ Florescu, Khaldoun Khashanah, and Jim Wang<br/>學校：Stevens Institute of Technology<br/>e-mail: ifloresc@stevens.edu ##
+作者：Dragos Bozdog, Ionut¸ Florescu, Khaldoun Khashanah, and Jim Wang  
+學校：Stevens Institute of Technology  
+e-mail: ifloresc@stevens.edu
 
 ## Abstract ##
 
